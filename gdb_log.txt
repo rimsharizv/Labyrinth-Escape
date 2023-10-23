@@ -1,0 +1,433 @@
+// MILESTONE 4
+
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.4.0-1054-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ *
+ * Welcome to the Codio Terminal!
+ *
+ * https://docs.codio.com/project/ide/boxes/#overview
+ *
+ * Your Codio Box domain is: dispute-tunnel.codio.io
+ *
+Last login: Mon Oct 18 00:02:23 2021 from 192.168.11.179
+codio@dispute-tunnel:~/workspace$ make build_reg
+rm -f ExploreTheRegularLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheRegularLabyrinth.cpp -o ExploreTheRegularLabyrinth.exe
+In file included from maze.h:24:0,
+                 from ExploreTheRegularLabyrinth.cpp:7:
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = MazeCell*]’:
+maze.h:61:42:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < NumRows; r++) {
+                     ~~^~~~~~~~~
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = long unsigned int]’:
+maze.h:292:66:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+codio@dispute-tunnel:~/workspace$ gdb ExploreTheRegularLabyrinth.exe
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ExploreTheRegularLabyrinth.exe...done.
+(gdb) b ExploreTheRegularLabyrinth.cpp:17
+Breakpoint 1 at 0x1cfb: file ExploreTheRegularLabyrinth.cpp, line 17.
+(gdb) r
+Starting program: /home/codio/workspace/ExploreTheRegularLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheRegularLabyrinth.cpp:19
+19          if (isPathToFreedom(start, kPathOutOfRegularMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555763c00 <vtable for Maze+16>, grid = {_vptr.Grid = 0x555555763c20 <vtable for Grid<MazeCell*>+16>, NumRows = 4, 
+    Rows = 0x555555776e70}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555777500
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555777640, east = 0x555555777550, west = 0x0}
+(gdb) p *start -> east
+$2 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x0, west = 0x555555777500}
+(gdb) p *start -> east -> west
+$3 = {whatsHere = "", north = 0x0, south = 0x555555777640, east = 0x555555777550, west = 0x0}
+(gdb) p *start -> east -> west -> south
+$4 = {whatsHere = "", north = 0x555555777500, south = 0x555555777780, east = 0x0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south
+$5 = {whatsHere = "", north = 0x555555777640, south = 0x5555557778c0, east = 0x5555557777d0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south
+$6 = {whatsHere = "", north = 0x555555777780, south = 0x0, east = 0x555555777910, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east
+$7 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555777960, west = 0x5555557778c0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east
+$8 = {whatsHere = "", north = 0x555555777820, south = 0x0, east = 0x5555557779b0, west = 0x555555777910}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north
+$9 = {whatsHere = "", north = 0x5555557776e0, south = 0x555555777960, east = 0x555555777870, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north
+$10 = {whatsHere = "", north = 0x5555557775a0, south = 0x555555777820, east = 0x555555777730, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> east
+$11 = {whatsHere = "", north = 0x5555557775f0, south = 0x0, east = 0x0, west = 0x5555557776e0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> east -> north
+$12 = {whatsHere = "Wand", north = 0x0, south = 0x555555777730, east = 0x0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> east -> north -> south
+$13 = {whatsHere = "", north = 0x5555557775f0, south = 0x0, east = 0x0, west = 0x5555557776e0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> east -> north -> south -> west
+$14 = {whatsHere = "", north = 0x5555557775a0, south = 0x555555777820, east = 0x555555777730, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> east -> north -> south -> west -> north
+$15 = {whatsHere = "Potion", north = 0x0, south = 0x5555557776e0, east = 0x0, west = 0x0}
+(gdb) q
+
+
+
+
+
+// 2
+
+
+
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.4.0-1054-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ *
+ * Welcome to the Codio Terminal!
+ *
+ * https://docs.codio.com/project/ide/boxes/#overview
+ *
+ * Your Codio Box domain is: dispute-tunnel.codio.io
+ *
+Last login: Mon Oct 18 00:48:01 2021 from 192.168.11.179
+codio@dispute-tunnel:~/workspace$ make build_reg
+rm -f ExploreTheRegularLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheRegularLabyrinth.cpp -o ExploreTheRegularLabyrinth.exe
+In file included from maze.h:24:0,
+                 from ExploreTheRegularLabyrinth.cpp:7:
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = MazeCell*]’:
+maze.h:61:42:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < NumRows; r++) {
+                     ~~^~~~~~~~~
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = long unsigned int]’:
+maze.h:292:66:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+codio@dispute-tunnel:~/workspace$ gdb ExploreTheRegularLabyrinth.exe
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ExploreTheRegularLabyrinth.exe...done.
+(gdb)  b ExploreTheRegularLabyrinth.cpp:17
+Breakpoint 1 at 0x1cfb: file ExploreTheRegularLabyrinth.cpp, line 17.
+(gdb) r
+Starting program: /home/codio/workspace/ExploreTheRegularLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheRegularLabyrinth.cpp:19
+19          if (isPathToFreedom(start, kPathOutOfRegularMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555763c00 <vtable for Maze+16>, grid = {_vptr.Grid = 0x555555763c20 <vtable for Grid<MazeCell*>+16>, NumRows = 4, 
+    Rows = 0x555555776e70}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555777500
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555777640, east = 0x555555777550, west = 0x0}
+(gdb) p *start -> east
+$2 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x0, west = 0x555555777500}
+(gdb) p *start -> east -> west
+$3 = {whatsHere = "", north = 0x0, south = 0x555555777640, east = 0x555555777550, west = 0x0}
+(gdb) p *start -> east -> west -> south
+$4 = {whatsHere = "", north = 0x555555777500, south = 0x555555777780, east = 0x0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south
+$5 = {whatsHere = "", north = 0x555555777640, south = 0x5555557778c0, east = 0x5555557777d0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south
+$6 = {whatsHere = "", north = 0x555555777780, south = 0x0, east = 0x555555777910, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east
+$7 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555777960, west = 0x5555557778c0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east
+$8 = {whatsHere = "", north = 0x555555777820, south = 0x0, east = 0x5555557779b0, west = 0x555555777910}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north
+$9 = {whatsHere = "", north = 0x5555557776e0, south = 0x555555777960, east = 0x555555777870, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north
+$10 = {whatsHere = "", north = 0x5555557775a0, south = 0x555555777820, east = 0x555555777730, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> north
+$11 = {whatsHere = "Potion", north = 0x0, south = 0x5555557776e0, east = 0x0, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> north -> south
+$12 = {whatsHere = "", north = 0x5555557775a0, south = 0x555555777820, east = 0x555555777730, west = 0x0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> north -> south -> east
+$13 = {whatsHere = "", north = 0x5555557775f0, south = 0x0, east = 0x0, west = 0x5555557776e0}
+(gdb) p *start -> east -> west -> south -> south -> south -> east -> east -> north -> north -> north -> south -> east -> north
+$14 = {whatsHere = "Wand", north = 0x0, south = 0x555555777730, east = 0x0, west = 0x0}
+(gdb) 
+
+
+
+
+
+// MILESTONE 5
+
+
+codio@dispute-tunnel:~/workspace$ make build_twisty
+rm -f ExploreTheTwistyLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheTwistyLabyrinth.cpp -o ExploreTheTwistyLabyrinth.exe
+In file included from maze.h:24:0,
+                 from ExploreTheTwistyLabyrinth.cpp:7:
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = MazeCell*]’:
+maze.h:61:42:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < NumRows; r++) {
+                     ~~^~~~~~~~~
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = long unsigned int]’:
+maze.h:292:66:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+codio@dispute-tunnel:~/workspace$ gdb ExploreTheTwistyLabyrinth.exe
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ExploreTheTwistyLabyrinth.exe...done.
+(gdb) b ExploreTheTwistyLabyrinth.cpp:18
+Breakpoint 1 at 0x1c76: file ExploreTheTwistyLabyrinth.cpp, line 18.
+(gdb) r
+Starting program: /home/codio/workspace/ExploreTheTwistyLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheTwistyLabyrinth.cpp:20
+20          if (isPathToFreedom(start, kPathOutOfTwistyMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555764c00 <vtable for Maze+16>, grid = {_vptr.Grid = 0x555555764c20 <vtable for Grid<MazeCell*>+16>, NumRows = 4, 
+    Rows = 0x555555777e70}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555778aa0
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555778b90, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> east
+$2 = {whatsHere = "", north = 0x555555778af0, south = 0x0, east = 0x555555778aa0, west = 0x555555778a50}
+(gdb) p *start -> east -> north
+$3 = {whatsHere = "", north = 0x555555778a00, south = 0x0, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> east -> north -> north
+$4 = {whatsHere = "", north = 0x555555778be0, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778af0}
+(gdb) p *start -> east -> north -> north -> east
+$5 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x555555778be0, west = 0x555555778a00}
+(gdb) p *start -> east -> north -> north -> east -> west
+$6 = {whatsHere = "", north = 0x555555778be0, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778af0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south
+$7 = {whatsHere = "", north = 0x0, south = 0x555555778db0, east = 0x555555778a00, west = 0x555555778be0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south
+$8 = {whatsHere = "Wand", north = 0x555555778a50, south = 0x0, east = 0x0, west = 0x555555778c80}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north
+$9 = {whatsHere = "", north = 0x555555778e00, south = 0x555555778cd0, east = 0x0, west = 0x555555778db0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south
+$10 = {whatsHere = "", north = 0x0, south = 0x555555778be0, east = 0x0, west = 0x555555778a50}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south
+$11 = {whatsHere = "", north = 0x555555778a00, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778cd0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south
+$12 = {whatsHere = "", north = 0x0, south = 0x555555778db0, east = 0x555555778a00, west = 0x555555778be0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east
+$13 = {whatsHere = "", north = 0x555555778be0, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778af0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east -> west
+$14 = {whatsHere = "", north = 0x555555778a00, south = 0x0, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east -> west -> north
+$15 = {whatsHere = "", north = 0x555555778be0, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778af0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east -> west -> north -> west
+$16 = {whatsHere = "", north = 0x555555778a00, south = 0x0, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east -> west -> north -> west -> east
+$17 = {whatsHere = "", north = 0x555555778af0, south = 0x0, east = 0x555555778aa0, west = 0x555555778a50}
+(gdb) p *start -> east -> north -> north -> east -> west -> south -> south -> north -> south -> south -> south -> east -> west -> north -> west -> east -> 
+
+
+
+// trial 2 for MILESTONE 5
+
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.4.0-1054-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ *
+ * Welcome to the Codio Terminal!
+ *
+ * https://docs.codio.com/project/ide/boxes/#overview
+ *
+ * Your Codio Box domain is: dispute-tunnel.codio.io
+ *
+Last login: Mon Oct 18 00:03:08 2021 from 192.168.11.179
+codio@dispute-tunnel:~/workspace$ make build_twisty
+rm -f ExploreTheTwistyLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheTwistyLabyrinth.cpp -o ExploreTheTwistyLabyrinth.exe
+In file included from maze.h:24:0,
+                 from ExploreTheTwistyLabyrinth.cpp:7:
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = MazeCell*]’:
+maze.h:61:42:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < NumRows; r++) {
+                     ~~^~~~~~~~~
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = long unsigned int]’:
+maze.h:292:66:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+codio@dispute-tunnel:~/workspace$ gdb ExploreTheTwistyLabyrinth.exe
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ExploreTheTwistyLabyrinth.exe...done.
+(gdb) b ExploreTheTwistyLabyrinth.cpp:18
+Breakpoint 1 at 0x1c76: file ExploreTheTwistyLabyrinth.cpp, line 18.
+(gdb) r
+Starting program: /home/codio/workspace/ExploreTheTwistyLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheTwistyLabyrinth.cpp:20
+20          if (isPathToFreedom(start, kPathOutOfTwistyMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555764c00 <vtable for Maze+16>, grid = {_vptr.Grid = 0x555555764c20 <vtable for Grid<MazeCell*>+16>, NumRows = 4, 
+    Rows = 0x555555777e70}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555778aa0
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555778b90, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> south
+$2 = {whatsHere = "", north = 0x0, south = 0x555555778aa0, east = 0x555555778b40, west = 0x0}
+(gdb) p *start -> south -> east
+$3 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x0, west = 0x555555778b90}
+(gdb) p *start -> south -> east -> west
+$4 = {whatsHere = "", north = 0x0, south = 0x555555778aa0, east = 0x555555778b40, west = 0x0}
+(gdb) p *start -> south -> east -> west -> south
+'$5 = {whatsHere = "", north = 0x0, south = 0x555555778b90, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> south -> east -> west -> south -> east
+$6 = {whatsHere = "", north = 0x555555778af0, south = 0x0, east = 0x555555778aa0, west = 0x555555778a50}
+(gdb) p *start -> south -> east -> west -> south -> east -> west
+$7 = {whatsHere = "", north = 0x555555778e00, south = 0x555555778cd0, east = 0x0, west = 0x555555778db0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west west
+A syntax error in expression, near `west'.
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west
+$8 = {whatsHere = "Wand", north = 0x555555778a50, south = 0x0, east = 0x0, west = 0x555555778c80}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west
+$9 = {whatsHere = "", north = 0x0, south = 0x555555778db0, east = 0x555555778a00, west = 0x555555778be0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> east
+$10 = {whatsHere = "", north = 0x555555778be0, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778af0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> east -> east
+$11 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x555555778be0, west = 0x555555778a00}
+(gdb) 
+
+
+
+// 3
+
+
+codio@dispute-tunnel:~/workspace$ make build_twisty
+rm -f ExploreTheTwistyLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheTwistyLabyrinth.cpp -o ExploreTheTwistyLabyrinth.exe
+In file included from maze.h:24:0,
+                 from ExploreTheTwistyLabyrinth.cpp:7:
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = MazeCell*]’:
+maze.h:61:42:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < NumRows; r++) {
+                     ~~^~~~~~~~~
+grid.h: In instantiation of ‘Grid<T>::~Grid() [with T = long unsigned int]’:
+maze.h:292:66:   required from here
+grid.h:89:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+codio@dispute-tunnel:~/workspace$ gdb ExploreTheTwistyLabyrinth.exe
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ExploreTheTwistyLabyrinth.exe...done.
+(gdb)  b ExploreTheTwistyLabyrinth.cpp:18
+Breakpoint 1 at 0x1c76: file ExploreTheTwistyLabyrinth.cpp, line 18.
+(gdb) r
+Starting program: /home/codio/workspace/ExploreTheTwistyLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheTwistyLabyrinth.cpp:20
+20          if (isPathToFreedom(start, kPathOutOfTwistyMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555764c00 <vtable for Maze+16>, grid = {_vptr.Grid = 0x555555764c20 <vtable for Grid<MazeCell*>+16>, NumRows = 4, 
+    Rows = 0x555555777e70}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555778aa0
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555778b90, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> south
+$2 = {whatsHere = "", north = 0x0, south = 0x555555778aa0, east = 0x555555778b40, west = 0x0}
+(gdb) p *start -> south -> east
+$3 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x0, west = 0x555555778b90}
+(gdb) p *start -> south -> east -> west
+$4 = {whatsHere = "", north = 0x0, south = 0x555555778aa0, east = 0x555555778b40, west = 0x0}
+(gdb) p *start -> south -> east -> west -> south
+$5 = {whatsHere = "", north = 0x0, south = 0x555555778b90, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> south -> east -> west
+$6 = {whatsHere = "", north = 0x0, south = 0x555555778aa0, east = 0x555555778b40, west = 0x0}
+(gdb) p *start -> south -> east -> west -> south -> east
+$7 = {whatsHere = "", north = 0x555555778af0, south = 0x0, east = 0x555555778aa0, west = 0x555555778a50}
+(gdb) p *start -> south -> east -> west -> south -> east -> north
+$8 = {whatsHere = "", north = 0x555555778a00, south = 0x0, east = 0x555555778e00, west = 0x0}
+(gdb) p *start -> south -> east -> west -> south -> east
+$9 = {whatsHere = "", north = 0x555555778af0, south = 0x0, east = 0x555555778aa0, west = 0x555555778a50}
+(gdb) p *start -> south -> east -> west -> south -> east -> west
+$10 = {whatsHere = "", north = 0x555555778e00, south = 0x555555778cd0, east = 0x0, west = 0x555555778db0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west
+$11 = {whatsHere = "Wand", north = 0x555555778a50, south = 0x0, east = 0x0, west = 0x555555778c80}
+(gdb) p *start -> south -> east -> west -> south -> east -> west
+$12 = {whatsHere = "", north = 0x555555778e00, south = 0x555555778cd0, east = 0x0, west = 0x555555778db0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> south
+$13 = {whatsHere = "", north = 0x0, south = 0x555555778be0, east = 0x0, west = 0x555555778a50}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west
+$14 = {whatsHere = "Wand", north = 0x555555778a50, south = 0x0, east = 0x0, west = 0x555555778c80}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west
+$15 = {whatsHere = "", north = 0x0, south = 0x555555778db0, east = 0x555555778a00, west = 0x555555778be0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> south
+$16 = {whatsHere = "Wand", north = 0x555555778a50, south = 0x0, east = 0x0, west = 0x555555778c80}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> west
+$17 = {whatsHere = "", north = 0x555555778a00, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778cd0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west
+$18 = {whatsHere = "", north = 0x0, south = 0x555555778db0, east = 0x555555778a00, west = 0x555555778be0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> west
+$19 = {whatsHere = "", north = 0x555555778a00, south = 0x555555778c80, east = 0x555555778c30, west = 0x555555778cd0}
+(gdb) p *start -> south -> east -> west -> south -> east -> west -> west -> west -> west -> east
+$20 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x555555778be0, west = 0x555555778a00}
+(gdb) 
